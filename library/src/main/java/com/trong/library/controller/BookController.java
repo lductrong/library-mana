@@ -58,7 +58,22 @@ public class BookController {
         if (returnedBook != null) {
             return ResponseEntity.ok(returnedBook);
         } else {
-            return ResponseEntity.badRequest().build(); // or a more descriptive error response
+            return ResponseEntity.badRequest().build();
         }
+    }
+
+    @GetMapping("/search")
+    public List<Book> searchBooks(@RequestParam String keyword) {
+        return bookService.searchBooks(keyword);
+    }
+
+    @GetMapping("/available")
+    public List<Book> getAvailableBooks() {
+        return bookService.getAvailableBooks();
+    }
+
+    @GetMapping("/borrowed")
+    public List<Book> getBorrowedBooks() {
+        return bookService.getBorrowedBooks();
     }
 }
